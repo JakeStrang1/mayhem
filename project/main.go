@@ -1,13 +1,15 @@
 package main
 
 import (
+	"os"
+
 	"example.com/myNetwork/db"
 	"example.com/myNetwork/user"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	dbClient, err := db.NewClient("localhost:27017/mayhem")
+	dbClient, err := db.NewClient(os.Getenv("MONGO_URL"))
 	if err != nil {
 		panic(err)
 	}
